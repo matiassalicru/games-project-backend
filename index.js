@@ -8,8 +8,8 @@ app.use(cors());
 
 const port = process.env.PORT || 4000;
 
-app.get('/games', (req, res) => {
-    fetch('https://api.rawg.io/api/games?key=71dd6ebf64e741a8901130bd575a6dcb&page_size=15')
+app.get('/games/:page', (req, res) => {
+    fetch(`https://api.rawg.io/api/games?key=71dd6ebf64e741a8901130bd575a6dcb&page_size=15&page=${req.params.page}`)
         .then(res => res.json())
         .then(data => {
             res.json(data.results)
