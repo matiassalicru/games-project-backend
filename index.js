@@ -41,8 +41,8 @@ app.get('/platforms', (req, res) => {
     })
 });
 
-app.get('/search', (req, res) => {
-    fetch(`https://api.rawg.io/api/games?key=71dd6ebf64e741a8901130bd575a6dcb&page_size=15&search=${req.params.search}`)
+app.get('/search/:game', (req, res) => {
+    fetch(`https://api.rawg.io/api/games?key=71dd6ebf64e741a8901130bd575a6dcb&page_size=15&search=${req.params.game}`)
     .then(res => res.json())
     .then(data => {
         res.json(data.results)
