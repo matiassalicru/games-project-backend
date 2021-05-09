@@ -19,7 +19,7 @@ app.get('/games/:page', (req, res) => {
         })
 });
 
-app.get('/game/:id', (req, res) => {
+app.get('/games/game/:id', (req, res) => {
     fetch(`https://api.rawg.io/api/games/${req.params.id}?key=71dd6ebf64e741a8901130bd575a6dcb`)
     .then(res => res.json())
     .then(data => {
@@ -32,6 +32,17 @@ app.get('/game/:id', (req, res) => {
 
 app.get('/platforms', (req, res) => {
     fetch(`https://api.rawg.io/api/platforms?key=71dd6ebf64e741a8901130bd575a6dcb`)
+    .then(res => res.json())
+    .then(data => {
+        res.json(data.results)
+    })
+    .catch((e) => {
+        console.log('something failed', e);
+    })
+});
+
+app.get('/search', (req, res) => {
+    fetch(`https://api.rawg.io/api/games?key=71dd6ebf64e741a8901130bd575a6dcb&page_size=15&search=${req.params.search}`)
     .then(res => res.json())
     .then(data => {
         res.json(data.results)
